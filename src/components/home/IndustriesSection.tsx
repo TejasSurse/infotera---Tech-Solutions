@@ -59,8 +59,9 @@ const IndustriesSection = () => {
           {industries.map((industry, index) => (
             <AnimatedSection key={industry.name} delay={index * 0.1}>
               <motion.div
-                whileHover={{ scale: 1.05 }}
-                className="group bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 hover:bg-white/10 transition-all duration-300 text-center"
+                whileHover={{ scale: 1.03 }}
+                transition={{ duration: 0.2 }}
+                className="group bg-white/5 rounded-2xl p-6 border border-white/10 hover:bg-white/10 transition-colors duration-200 text-center"
               >
                 <div className="w-16 h-16 mx-auto rounded-2xl bg-gradient-to-br from-brand-blue to-brand-cyan flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
                   <industry.icon className="w-8 h-8 text-white" />

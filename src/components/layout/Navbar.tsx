@@ -24,7 +24,7 @@ const Navbar = () => {
 
   // Check if current page has a dark hero
   const hasDarkHero = darkHeroPages.includes(location.pathname);
-  
+
   // Navbar should be light (white bg) when scrolled OR when on a page without dark hero
   const isLightNavbar = isScrolled || !hasDarkHero;
 
@@ -44,12 +44,11 @@ const Navbar = () => {
     <motion.header
       initial={{ y: -100 }}
       animate={{ y: 0 }}
-      transition={{ duration: 0.6, ease: "easeOut" }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isLightNavbar
-          ? "bg-white/95 backdrop-blur-md shadow-lg"
+      transition={{ duration: 0.4, ease: "easeOut" }}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-200 ${isLightNavbar
+          ? "bg-white/98 shadow-lg"
           : "bg-transparent"
-      }`}
+        }`}
     >
       <nav className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
@@ -58,9 +57,8 @@ const Navbar = () => {
             <motion.img
               src={infoteraLogo}
               alt="Infotera Tech Solutions"
-              className={`h-12 md:h-14 w-auto transition-all duration-300 ${
-                !isLightNavbar ? "brightness-0 invert" : ""
-              }`}
+              className={`h-12 md:h-14 w-auto transition-all duration-300 ${!isLightNavbar ? "brightness-0 invert" : ""
+                }`}
               whileHover={{ scale: 1.02 }}
               transition={{ duration: 0.2 }}
             />
@@ -72,21 +70,19 @@ const Navbar = () => {
               <Link
                 key={link.name}
                 to={link.path}
-                className={`relative px-4 py-2 text-sm font-medium transition-colors duration-200 ${
-                  location.pathname === link.path
+                className={`relative px-4 py-2 text-sm font-medium transition-colors duration-200 ${location.pathname === link.path
                     ? isLightNavbar ? "text-secondary" : "text-white"
                     : isLightNavbar
-                    ? "text-primary hover:text-secondary"
-                    : "text-white/80 hover:text-white"
-                }`}
+                      ? "text-primary hover:text-secondary"
+                      : "text-white/80 hover:text-white"
+                  }`}
               >
                 {link.name}
                 {location.pathname === link.path && (
                   <motion.div
                     layoutId="activeNav"
-                    className={`absolute bottom-0 left-4 right-4 h-0.5 rounded-full ${
-                      isLightNavbar ? "bg-secondary" : "bg-white"
-                    }`}
+                    className={`absolute bottom-0 left-4 right-4 h-0.5 rounded-full ${isLightNavbar ? "bg-secondary" : "bg-white"
+                      }`}
                     transition={{ duration: 0.3 }}
                   />
                 )}
@@ -98,11 +94,10 @@ const Navbar = () => {
           <div className="hidden lg:flex items-center gap-4">
             <a
               href="tel:9322915022"
-              className={`flex items-center gap-2 text-sm font-medium transition-colors ${
-                isLightNavbar
+              className={`flex items-center gap-2 text-sm font-medium transition-colors ${isLightNavbar
                   ? "text-primary hover:text-secondary"
                   : "text-white/80 hover:text-white"
-              }`}
+                }`}
             >
               <Phone className="w-4 h-4" />
               <span>9322915022</span>
@@ -117,9 +112,8 @@ const Navbar = () => {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className={`lg:hidden p-2 rounded-lg transition-colors ${
-              isLightNavbar ? "hover:bg-muted" : "hover:bg-white/10"
-            }`}
+            className={`lg:hidden p-2 rounded-lg transition-colors ${isLightNavbar ? "hover:bg-muted" : "hover:bg-white/10"
+              }`}
           >
             {isMobileMenuOpen ? (
               <X className={`w-6 h-6 ${isLightNavbar ? "text-primary" : "text-white"}`} />
@@ -144,17 +138,16 @@ const Navbar = () => {
               {navLinks.map((link, index) => (
                 <motion.div
                   key={link.name}
-                  initial={{ opacity: 0, x: -20 }}
+                  initial={{ opacity: 0, x: -10 }}
                   animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: index * 0.05 }}
+                  transition={{ delay: index * 0.03, duration: 0.2 }}
                 >
                   <Link
                     to={link.path}
-                    className={`block py-2 text-lg font-medium transition-colors ${
-                      location.pathname === link.path
+                    className={`block py-2 text-lg font-medium transition-colors ${location.pathname === link.path
                         ? "text-secondary"
                         : "text-primary hover:text-secondary"
-                    }`}
+                      }`}
                   >
                     {link.name}
                   </Link>
