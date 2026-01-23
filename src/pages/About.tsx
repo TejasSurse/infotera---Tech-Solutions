@@ -3,13 +3,6 @@ import { Target, Eye, Heart, Users, Lightbulb, Award } from "lucide-react";
 import Layout from "@/components/layout/Layout";
 import AnimatedSection from "@/components/ui/AnimatedSection";
 
-const timelineEvents = [
-  { year: "2023", title: "Founded", description: "Infotera Tech Solutions was born with a vision to democratize IT consultancy." },
-  { year: "2024", title: "Growth", description: "Expanded our team and launched industry-specific software products." },
-  { year: "2025", title: "AI Integration", description: "Integrated AI automation into all our solutions for smarter businesses." },
-  { year: "2026", title: "Future", description: "Continuing to innovate and empower businesses worldwide." },
-];
-
 const values = [
   { icon: Heart, title: "Customer First", description: "Your success is our priority. We go above and beyond for our clients." },
   { icon: Lightbulb, title: "Innovation", description: "Constantly pushing boundaries with cutting-edge technology solutions." },
@@ -97,44 +90,6 @@ const About = () => {
                   <h3 className="text-lg font-bold text-primary mb-2">{value.title}</h3>
                   <p className="text-muted-foreground text-sm">{value.description}</p>
                 </motion.div>
-              </AnimatedSection>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Timeline */}
-      <section className="section-padding">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <AnimatedSection className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-primary mb-4">
-              Our Journey
-            </h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto">
-              From a startup with a vision to a growing technology company.
-            </p>
-          </AnimatedSection>
-
-          <div className="max-w-3xl mx-auto">
-            {timelineEvents.map((event, index) => (
-              <AnimatedSection key={event.year} delay={index * 0.15}>
-                <div className="flex gap-6 mb-8 last:mb-0">
-                  <div className="flex flex-col items-center">
-                    <motion.div
-                      whileHover={{ scale: 1.1 }}
-                      className="w-16 h-16 rounded-full bg-gradient-to-br from-brand-blue to-brand-cyan flex items-center justify-center text-white font-bold shrink-0"
-                    >
-                      {event.year}
-                    </motion.div>
-                    {index < timelineEvents.length - 1 && (
-                      <div className="w-0.5 h-full bg-border mt-4" />
-                    )}
-                  </div>
-                  <div className="pt-3">
-                    <h3 className="text-xl font-bold text-primary mb-2">{event.title}</h3>
-                    <p className="text-muted-foreground">{event.description}</p>
-                  </div>
-                </div>
               </AnimatedSection>
             ))}
           </div>
