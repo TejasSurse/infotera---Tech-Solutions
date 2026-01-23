@@ -16,12 +16,23 @@ import Layout from "@/components/layout/Layout";
 import AnimatedSection from "@/components/ui/AnimatedSection";
 import { Button } from "@/components/ui/button";
 
+// Import service images
+import itConsultancyImg from "@/assets/services/it-consultancy.jpg";
+import softwareSolutionsImg from "@/assets/services/software-solutions.jpg";
+import webDevelopmentImg from "@/assets/services/web-development.jpg";
+import businessManagementImg from "@/assets/services/business-management.jpg";
+import itInfrastructureImg from "@/assets/services/it-infrastructure.jpg";
+import dataProtectionImg from "@/assets/services/data-protection.jpg";
+import customerSupportImg from "@/assets/services/customer-support.jpg";
+import cloudComputingImg from "@/assets/services/cloud-computing.jpg";
+
 const services = [
   {
     id: "consultancy",
     icon: Monitor,
     title: "IT Consultancy",
     description: "Expert guidance to optimize your IT infrastructure and strategy for business growth.",
+    image: itConsultancyImg,
     features: [
       "Technology assessment and roadmap",
       "Digital transformation strategy",
@@ -35,6 +46,7 @@ const services = [
     icon: Code2,
     title: "Software Solutions",
     description: "Custom software development tailored to your unique business requirements.",
+    image: softwareSolutionsImg,
     features: [
       "Custom application development",
       "Legacy system modernization",
@@ -48,6 +60,7 @@ const services = [
     icon: Globe,
     title: "Web Development",
     description: "Modern, responsive websites and web applications that drive results.",
+    image: webDevelopmentImg,
     features: [
       "Responsive website design",
       "E-commerce solutions",
@@ -61,6 +74,7 @@ const services = [
     icon: Building2,
     title: "Business Management",
     description: "Streamline operations with intelligent business management solutions.",
+    image: businessManagementImg,
     features: [
       "ERP implementation",
       "Workflow automation",
@@ -74,6 +88,7 @@ const services = [
     icon: Server,
     title: "IT Infrastructure",
     description: "Robust infrastructure setup and management for reliable operations.",
+    image: itInfrastructureImg,
     features: [
       "Network design and setup",
       "Server management",
@@ -87,6 +102,7 @@ const services = [
     icon: Shield,
     title: "Data Protection",
     description: "Comprehensive security solutions to protect your valuable business data.",
+    image: dataProtectionImg,
     features: [
       "Data backup solutions",
       "Encryption services",
@@ -100,6 +116,7 @@ const services = [
     icon: Headphones,
     title: "Customer Support",
     description: "24/7 dedicated support to ensure your systems run smoothly.",
+    image: customerSupportImg,
     features: [
       "24/7 helpdesk support",
       "Remote assistance",
@@ -113,6 +130,7 @@ const services = [
     icon: Cloud,
     title: "Cloud Computing",
     description: "Scalable cloud solutions for flexibility and cost optimization.",
+    image: cloudComputingImg,
     features: [
       "Cloud migration",
       "Multi-cloud management",
@@ -199,11 +217,15 @@ const Services = () => {
 
                   <motion.div
                     whileHover={{ scale: 1.02 }}
-                    className={`bg-gradient-to-br from-muted to-muted/50 rounded-3xl p-8 aspect-square flex items-center justify-center ${
+                    className={`rounded-3xl overflow-hidden shadow-card-hover ${
                       index % 2 === 1 ? "lg:order-1" : ""
                     }`}
                   >
-                    <service.icon className="w-32 h-32 text-secondary/30" />
+                    <img 
+                      src={service.image} 
+                      alt={service.title}
+                      className="w-full h-full object-cover aspect-square"
+                    />
                   </motion.div>
                 </div>
               </AnimatedSection>

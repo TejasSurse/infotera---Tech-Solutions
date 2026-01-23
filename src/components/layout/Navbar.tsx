@@ -14,10 +14,19 @@ const navLinks = [
   { name: "Contact", path: "/contact" },
 ];
 
+// Pages with dark hero backgrounds where navbar needs light text
+const darkHeroPages = ["/", "/services", "/contact"];
+
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
+
+  // Check if current page has a dark hero
+  const hasDarkHero = darkHeroPages.includes(location.pathname);
+  
+  // Navbar should be light (white bg) when scrolled OR when on a page without dark hero
+  const isLightNavbar = isScrolled || !hasDarkHero;
 
   useEffect(() => {
     const handleScroll = () => {
@@ -37,7 +46,7 @@ const Navbar = () => {
       animate={{ y: 0 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled
+        isLightNavbar
           ? "bg-white/95 backdrop-blur-md shadow-lg"
           : "bg-transparent"
       }`}
@@ -49,7 +58,9 @@ const Navbar = () => {
             <motion.img
               src={infoteraLogo}
               alt="Infotera Tech Solutions"
-              className="h-12 md:h-14 w-auto"
+              className={`h-12 md:h-14 w-auto transition-all duration-300 ${
+                !isLightNavbar ? "brightness-0 invert" : ""
+              }`}
               whileHover={{ scale: 1.02 }}
               transition={{ duration: 0.2 }}
             />
@@ -63,17 +74,19 @@ const Navbar = () => {
                 to={link.path}
                 className={`relative px-4 py-2 text-sm font-medium transition-colors duration-200 ${
                   location.pathname === link.path
-                    ? "text-secondary"
-                    : isScrolled
+                    ? isLightNavbar ? "text-secondary" : "text-white"
+                    : isLightNavbar
                     ? "text-primary hover:text-secondary"
-                    : "text-primary hover:text-secondary"
+                    : "text-white/80 hover:text-white"
                 }`}
               >
                 {link.name}
                 {location.pathname === link.path && (
                   <motion.div
                     layoutId="activeNav"
-                    className="absolute bottom-0 left-4 right-4 h-0.5 bg-secondary rounded-full"
+                    className={`absolute bottom-0 left-4 right-4 h-0.5 rounded-full ${
+                      isLightNavbar ? "bg-secondary" : "bg-white"
+                    }`}
                     transition={{ duration: 0.3 }}
                   />
                 )}
@@ -85,7 +98,11 @@ const Navbar = () => {
           <div className="hidden lg:flex items-center gap-4">
             <a
               href="tel:9322915022"
-              className="flex items-center gap-2 text-sm font-medium text-primary hover:text-secondary transition-colors"
+              className={`flex items-center gap-2 text-sm font-medium transition-colors ${
+                isLightNavbar
+                  ? "text-primary hover:text-secondary"
+                  : "text-white/80 hover:text-white"
+              }`}
             >
               <Phone className="w-4 h-4" />
               <span>9322915022</span>
@@ -100,12 +117,14 @@ const Navbar = () => {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="lg:hidden p-2 rounded-lg hover:bg-muted transition-colors"
+            className={`lg:hidden p-2 rounded-lg transition-colors ${
+              isLightNavbar ? "hover:bg-muted" : "hover:bg-white/10"
+            }`}
           >
             {isMobileMenuOpen ? (
-              <X className="w-6 h-6 text-primary" />
+              <X className={`w-6 h-6 ${isLightNavbar ? "text-primary" : "text-white"}`} />
             ) : (
-              <Menu className="w-6 h-6 text-primary" />
+              <Menu className={`w-6 h-6 ${isLightNavbar ? "text-primary" : "text-white"}`} />
             )}
           </button>
         </div>
