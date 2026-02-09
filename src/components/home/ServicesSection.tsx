@@ -1,73 +1,65 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import {
-  Monitor,
-  Code2,
+  Bot,
   Globe,
-  Building2,
-  Server,
-  Shield,
-  Headphones,
-  Cloud,
+  Layout,
+  MessageSquareText,
+  Code2,
+  Smartphone,
+  ShoppingCart,
   ArrowRight,
 } from "lucide-react";
 import AnimatedSection from "@/components/ui/AnimatedSection";
 
 const services = [
   {
-    icon: Monitor,
-    title: "IT Consultancy",
+    icon: Bot,
+    title: "AI Automations",
     description:
-      "Expert guidance to optimize your IT infrastructure and strategy for business growth.",
-    color: "from-blue-500 to-cyan-500",
-  },
-  {
-    icon: Code2,
-    title: "Software Solutions",
-    description:
-      "Custom software development tailored to your unique business requirements.",
+      "Streamline your business with intelligent AI-powered automation solutions that boost efficiency.",
     color: "from-purple-500 to-pink-500",
   },
   {
     icon: Globe,
-    title: "Web Development",
+    title: "Website Development",
     description:
-      "Modern, responsive websites and web applications that drive results.",
+      "Modern, responsive, and SEO-optimized websites that drive traffic and conversions.",
+    color: "from-blue-500 to-cyan-500",
+  },
+  {
+    icon: Layout,
+    title: "Portal Development",
+    description:
+      "Custom online portals for business management, customer engagement, and internal operations.",
     color: "from-green-500 to-teal-500",
   },
   {
-    icon: Building2,
-    title: "Business Management",
+    icon: MessageSquareText,
+    title: "Chatbots",
     description:
-      "Streamline operations with intelligent business management solutions.",
+      "AI-powered chatbots for 24/7 customer support and lead generation.",
     color: "from-orange-500 to-red-500",
   },
   {
-    icon: Server,
-    title: "IT Infrastructure",
+    icon: Code2,
+    title: "Custom Software",
     description:
-      "Robust infrastructure setup and management for reliable operations.",
+      "Tailored software solutions designed specifically for your unique business requirements.",
     color: "from-indigo-500 to-purple-500",
   },
   {
-    icon: Shield,
-    title: "Data Protection",
+    icon: Smartphone,
+    title: "Mobile Apps",
     description:
-      "Comprehensive security solutions to protect your valuable business data.",
-    color: "from-red-500 to-pink-500",
+      "Native and cross-platform mobile apps for Android and iOS that engage your users.",
+    color: "from-pink-500 to-rose-500",
   },
   {
-    icon: Headphones,
-    title: "Customer Support",
+    icon: ShoppingCart,
+    title: "E-commerce Website",
     description:
-      "24/7 dedicated support to ensure your systems run smoothly.",
-    color: "from-teal-500 to-green-500",
-  },
-  {
-    icon: Cloud,
-    title: "Cloud Computing",
-    description:
-      "Scalable cloud solutions for flexibility and cost optimization.",
+      "Complete e-commerce solutions with payment integration, inventory management, and analytics.",
     color: "from-cyan-500 to-blue-500",
   },
 ];
@@ -82,11 +74,11 @@ const ServicesSection = () => {
             Our Services
           </span>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-primary mb-4">
-            Comprehensive IT Solutions
+            Comprehensive Digital Solutions
           </h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            From consultancy to implementation, we provide end-to-end technology
-            solutions to power your business.
+            From AI automations to complete web and mobile solutions, we provide end-to-end technology
+            services to power your business growth.
           </p>
         </AnimatedSection>
 

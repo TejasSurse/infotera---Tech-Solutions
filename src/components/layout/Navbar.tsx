@@ -46,8 +46,8 @@ const Navbar = () => {
       animate={{ y: 0 }}
       transition={{ duration: 0.4, ease: "easeOut" }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-200 ${isLightNavbar
-          ? "bg-white/98 shadow-lg"
-          : "bg-transparent"
+        ? "bg-white shadow-lg"
+        : "bg-[#0a1929] shadow-lg"
         }`}
     >
       <nav className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -71,10 +71,10 @@ const Navbar = () => {
                 key={link.name}
                 to={link.path}
                 className={`relative px-4 py-2 text-sm font-medium transition-colors duration-200 ${location.pathname === link.path
-                    ? isLightNavbar ? "text-secondary" : "text-white"
-                    : isLightNavbar
-                      ? "text-primary hover:text-secondary"
-                      : "text-white/80 hover:text-white"
+                  ? isLightNavbar ? "text-secondary" : "text-white"
+                  : isLightNavbar
+                    ? "text-primary hover:text-secondary"
+                    : "text-white/80 hover:text-white"
                   }`}
               >
                 {link.name}
@@ -95,8 +95,8 @@ const Navbar = () => {
             <a
               href="tel:9322915022"
               className={`flex items-center gap-2 text-sm font-medium transition-colors ${isLightNavbar
-                  ? "text-primary hover:text-secondary"
-                  : "text-white/80 hover:text-white"
+                ? "text-primary hover:text-secondary"
+                : "text-white/80 hover:text-white"
                 }`}
             >
               <Phone className="w-4 h-4" />
@@ -145,8 +145,8 @@ const Navbar = () => {
                   <Link
                     to={link.path}
                     className={`block py-2 text-lg font-medium transition-colors ${location.pathname === link.path
-                        ? "text-secondary"
-                        : "text-primary hover:text-secondary"
+                      ? "text-secondary"
+                      : "text-primary hover:text-secondary"
                       }`}
                   >
                     {link.name}

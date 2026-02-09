@@ -9,14 +9,13 @@ import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 
 const services = [
-  "IT Consultancy",
-  "Software Solutions",
-  "Web Development",
-  "Business Management",
-  "IT Infrastructure",
-  "Data Protection",
-  "Customer Support",
-  "Cloud Computing",
+  "AI Automations",
+  "Website Development",
+  "Portal Development",
+  "Chatbots",
+  "Custom Software Development",
+  "Android & iOS App Development",
+  "E-commerce Website",
 ];
 
 const Contact = () => {
