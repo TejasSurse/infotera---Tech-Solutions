@@ -1,21 +1,21 @@
 import { useState } from "react";
-import { motion } from "framer-motion";
-import { Mail, Phone, MapPin, Send, Check } from "lucide-react";
+import { Mail, Phone, MapPin, Send, Check, MessageCircle, Sparkles } from "lucide-react";
 import Layout from "@/components/layout/Layout";
-import AnimatedSection from "@/components/ui/AnimatedSection";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
+import { getWhatsAppUrl } from "@/components/common/WhatsAppButton";
+import { submitLead, trackEvent } from "@/lib/api";
 
-const services = [
-  "AI Automations",
-  "Website Development",
-  "Portal Development",
-  "Chatbots",
-  "Custom Software Development",
-  "Android & iOS App Development",
-  "E-commerce Website",
+const interestOptions = [
+  "CivilFlow — Construction & Labour SaaS Demo",
+  "OneCRM AI — Automated Sales CRM Beta",
+  "Construction & Infrastructure Tech Solutions",
+  "Hospitality, Hotel & POS Software",
+  "Enterprise AI Automations & WhatsApp Bots",
+  "Custom Web Portal / Mobile App Development",
+  "100% Free General Tech Consultancy",
 ];
 
 const Contact = () => {
@@ -25,7 +25,7 @@ const Contact = () => {
     name: "",
     email: "",
     phone: "",
-    service: "",
+    interest: "CivilFlow — Construction & Labour SaaS Demo",
     message: "",
   });
 
@@ -33,19 +33,30 @@ const Contact = () => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate form submission
-    await new Promise((resolve) => setTimeout(resolve, 1500));
+    await submitLead({
+      name: formData.name,
+      email: formData.email,
+      phone: formData.phone,
+      interest: formData.interest,
+      message: formData.message,
+      source: "Website Contact Form",
+    });
+
+    trackEvent("/contact", "form_submit", formData.interest);
 
     toast({
-      title: "Message Sent!",
-      description: "Thank you for your inquiry. We'll get back to you within 24 hours.",
+      title: "Inquiry Received! 🚀",
+      description: "Our tech solutions engineer will contact you shortly.",
     });
+
+    const msg = `Hi Infotera Team! My name is ${formData.name}. I am inquiring about: ${formData.interest}. My phone: ${formData.phone}, Email: ${formData.email}. Note: ${formData.message}`;
+    window.open(getWhatsAppUrl(msg), "_blank", "noopener,noreferrer");
 
     setFormData({
       name: "",
       email: "",
       phone: "",
-      service: "",
+      interest: "CivilFlow — Construction & Labour SaaS Demo",
       message: "",
     });
     setIsSubmitting(false);
@@ -53,171 +64,182 @@ const Contact = () => {
 
   return (
     <Layout>
-      {/* Hero */}
-      <section className="pt-32 pb-20 bg-hero-gradient">
+      {/* Hero (Clean Light) */}
+      <section className="pt-32 pb-14 md:pt-40 md:pb-20 bg-gradient-to-b from-slate-50 via-white to-slate-50">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <AnimatedSection className="max-w-3xl mx-auto text-center">
-            <span className="inline-block px-4 py-1.5 rounded-full bg-white/10 text-brand-cyan text-sm font-medium mb-4">
-              Contact Us
+          <div className="max-w-3xl mx-auto text-center">
+            <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-cyan-100 text-cyan-800 text-xs font-bold mb-4 shadow-sm">
+              <Sparkles className="w-3.5 h-3.5 text-cyan-600" />
+              100% Free Consultation & Live Demos
             </span>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
-              Start with a Free Consultation Today
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-black text-slate-900 mb-4 leading-tight">
+              Let's Build & Scale{" "}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-600 to-teal-600">
+                Together
+              </span>
             </h1>
-            <p className="text-lg text-white/80">
-              Get expert IT & AI guidance at absolutely no cost. Fill out the form below and our team will reach out within 24 hours.
+            <p className="text-sm sm:text-base text-slate-600 max-w-2xl mx-auto leading-relaxed">
+              Book a live demo of CivilFlow or consult our solutions architects regarding custom technology for your operations.
             </p>
-          </AnimatedSection>
+          </div>
         </div>
       </section>
 
       {/* Contact Section */}
-      <section className="section-padding">
+      <section className="py-12 sm:py-16 bg-white border-t border-slate-100">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-12">
+          <div className="grid lg:grid-cols-12 gap-10 items-start">
             {/* Contact Info */}
-            <AnimatedSection direction="left">
-              <div className="space-y-8">
-                <div>
-                  <h2 className="text-3xl font-bold text-primary mb-4">Get in Touch</h2>
-                  <p className="text-muted-foreground">
-                    We're here to help. Reach out to us through any of the following channels or fill out the contact form.
-                  </p>
-                </div>
+            <div className="lg:col-span-5 space-y-6">
+              <div>
+                <h2 className="text-2xl font-bold text-slate-900 mb-2">
+                  Fast Track with Instant WhatsApp
+                </h2>
+                <p className="text-slate-600 text-xs sm:text-sm leading-relaxed mb-6">
+                  Need a live product walkthrough right away? Connect with our technical team directly on WhatsApp for zero-wait response.
+                </p>
 
-                <div className="space-y-6">
-                  <motion.a
-                    href="tel:9322915022"
-                    whileHover={{ x: 5 }}
-                    className="flex items-center gap-4 p-4 rounded-xl bg-muted hover:bg-secondary/10 transition-colors"
-                  >
-                    <div className="w-12 h-12 rounded-xl bg-secondary flex items-center justify-center">
-                      <Phone className="w-6 h-6 text-secondary-foreground" />
-                    </div>
-                    <div>
-                      <div className="text-sm text-muted-foreground">Phone</div>
-                      <div className="font-semibold text-primary">9322915022</div>
-                    </div>
-                  </motion.a>
+                <a
+                  href={getWhatsAppUrl("Hi Infotera! I want to schedule a Free Live Demo on WhatsApp.")}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full bg-[#25D366] hover:bg-[#20ba59] text-white p-4 rounded-2xl font-bold text-sm sm:text-base flex items-center justify-center gap-2.5 shadow-md hover:scale-[1.02] transition-all mb-6"
+                >
+                  <MessageCircle className="w-5 h-5" />
+                  <span>Chat Directly on WhatsApp</span>
+                </a>
+              </div>
 
-                  <motion.a
-                    href="mailto:contact@infotera.com"
-                    whileHover={{ x: 5 }}
-                    className="flex items-center gap-4 p-4 rounded-xl bg-muted hover:bg-secondary/10 transition-colors"
-                  >
-                    <div className="w-12 h-12 rounded-xl bg-secondary flex items-center justify-center">
-                      <Mail className="w-6 h-6 text-secondary-foreground" />
-                    </div>
-                    <div>
-                      <div className="text-sm text-muted-foreground">Email</div>
-                      <div className="font-semibold text-primary">contact@infotera.com</div>
-                    </div>
-                  </motion.a>
-
-                  <motion.div
-                    whileHover={{ x: 5 }}
-                    className="flex items-center gap-4 p-4 rounded-xl bg-muted"
-                  >
-                    <div className="w-12 h-12 rounded-xl bg-secondary flex items-center justify-center">
-                      <MapPin className="w-6 h-6 text-secondary-foreground" />
-                    </div>
-                    <div>
-                      <div className="text-sm text-muted-foreground">Location</div>
-                      <div className="font-semibold text-primary">India</div>
-                    </div>
-                  </motion.div>
-                </div>
-
-                {/* Free Badge */}
-                <div className="p-6 rounded-2xl bg-gradient-to-br from-accent/20 to-accent/5 border-2 border-accent/30">
-                  <div className="flex items-center gap-3 mb-2">
-                    <Check className="w-6 h-6 text-accent" />
-                    <span className="font-bold text-primary">100% Free Consultancy</span>
+              <div className="space-y-3">
+                <a
+                  href="tel:9322915022"
+                  className="flex items-center gap-3.5 p-4 rounded-2xl bg-slate-50 border border-slate-200 hover:border-cyan-500 transition-all shadow-sm"
+                >
+                  <div className="w-10 h-10 rounded-xl bg-cyan-100 text-cyan-800 flex items-center justify-center shrink-0">
+                    <Phone className="w-5 h-5" />
                   </div>
-                  <p className="text-muted-foreground text-sm">
-                    Get expert advice without any financial commitment. We believe in earning your trust first.
-                  </p>
+                  <div>
+                    <div className="text-[11px] text-slate-500 font-medium">Direct Phone Line</div>
+                    <div className="font-bold text-slate-900 text-sm">9322915022</div>
+                  </div>
+                </a>
+
+                <a
+                  href="mailto:contact@infotera.com"
+                  className="flex items-center gap-3.5 p-4 rounded-2xl bg-slate-50 border border-slate-200 hover:border-cyan-500 transition-all shadow-sm"
+                >
+                  <div className="w-10 h-10 rounded-xl bg-blue-100 text-blue-800 flex items-center justify-center shrink-0">
+                    <Mail className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <div className="text-[11px] text-slate-500 font-medium">Email Inquiries</div>
+                    <div className="font-bold text-slate-900 text-sm">contact@infotera.com</div>
+                  </div>
+                </a>
+
+                <div className="flex items-center gap-3.5 p-4 rounded-2xl bg-slate-50 border border-slate-200 shadow-sm">
+                  <div className="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-800 flex items-center justify-center shrink-0">
+                    <MapPin className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <div className="text-[11px] text-slate-500 font-medium">Headquarters</div>
+                    <div className="font-bold text-slate-900 text-sm">India • Serving Nationwide & Global</div>
+                  </div>
                 </div>
               </div>
-            </AnimatedSection>
+
+              {/* Free Badge */}
+              <div className="p-5 rounded-2xl bg-cyan-50 border border-cyan-200">
+                <div className="flex items-center gap-2 mb-1.5">
+                  <Check className="w-4 h-4 text-cyan-700 font-bold" />
+                  <span className="font-bold text-slate-900 text-sm">100% Free Initial Architecture Consultation</span>
+                </div>
+                <p className="text-slate-600 text-xs leading-relaxed">
+                  No credit card or commitment required. We evaluate your operational challenges and propose clear technical solutions.
+                </p>
+              </div>
+            </div>
 
             {/* Contact Form */}
-            <AnimatedSection direction="right">
-              <motion.form
+            <div className="lg:col-span-7">
+              <form
                 onSubmit={handleSubmit}
-                className="bg-card p-8 rounded-2xl border border-border shadow-card"
+                className="bg-slate-50 p-6 sm:p-8 rounded-3xl border border-slate-200 shadow-sm"
               >
-                <h3 className="text-2xl font-bold text-primary mb-6">Send us a Message</h3>
+                <h3 className="text-xl font-bold text-slate-900 mb-1">Send Project Brief</h3>
+                <p className="text-xs text-slate-500 mb-5">
+                  Fill in your details below and we will prepare a customized demo environment for you.
+                </p>
 
-                <div className="space-y-5">
+                <div className="space-y-3.5 text-xs">
                   <div>
-                    <label className="block text-sm font-medium text-foreground mb-2">
-                      Full Name *
+                    <label className="block font-bold text-slate-700 mb-1">
+                      Your Full Name *
                     </label>
                     <Input
                       required
-                      placeholder="John Doe"
+                      placeholder="e.g. Ramesh Sharma"
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      className="h-12"
+                      className="h-10 bg-white border-slate-300 text-slate-900"
                     />
                   </div>
 
-                  <div className="grid sm:grid-cols-2 gap-4">
+                  <div className="grid sm:grid-cols-2 gap-3">
                     <div>
-                      <label className="block text-sm font-medium text-foreground mb-2">
-                        Email *
+                      <label className="block font-bold text-slate-700 mb-1">
+                        Email Address *
                       </label>
                       <Input
                         type="email"
                         required
-                        placeholder="john@example.com"
+                        placeholder="ramesh@company.com"
                         value={formData.email}
                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                        className="h-12"
+                        className="h-10 bg-white border-slate-300 text-slate-900"
                       />
                     </div>
                     <div>
-                      <label className="block text-sm font-medium text-foreground mb-2">
-                        Phone
+                      <label className="block font-bold text-slate-700 mb-1">
+                        Phone / WhatsApp Number *
                       </label>
                       <Input
                         type="tel"
-                        placeholder="+91 9876543210"
+                        required
+                        placeholder="+91 9322915022"
                         value={formData.phone}
                         onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                        className="h-12"
+                        className="h-10 bg-white border-slate-300 text-slate-900"
                       />
                     </div>
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-foreground mb-2">
-                      Service Interested In
+                    <label className="block font-bold text-slate-700 mb-1">
+                      Product / Solution of Interest *
                     </label>
                     <select
-                      value={formData.service}
-                      onChange={(e) => setFormData({ ...formData, service: e.target.value })}
-                      className="w-full h-12 px-3 rounded-lg border border-input bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-ring"
+                      value={formData.interest}
+                      onChange={(e) => setFormData({ ...formData, interest: e.target.value })}
+                      className="w-full h-10 px-3 rounded-xl border border-slate-300 bg-white text-slate-900 text-xs font-medium focus:outline-none focus:ring-1 focus:ring-cyan-500"
                     >
-                      <option value="">Select a service</option>
-                      {services.map((service) => (
-                        <option key={service} value={service}>
-                          {service}
+                      {interestOptions.map((opt) => (
+                        <option key={opt} value={opt}>
+                          {opt}
                         </option>
                       ))}
                     </select>
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-foreground mb-2">
-                      Message *
+                    <label className="block font-bold text-slate-700 mb-1">
+                      Tell us about your project or team size
                     </label>
                     <Textarea
-                      required
-                      placeholder="Tell us about your project or requirements..."
+                      placeholder="e.g. We have 4 ongoing building sites and want to track 120 daily labour workers and material inventory..."
                       value={formData.message}
                       onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                      className="min-h-[120px]"
+                      className="min-h-[90px] bg-white border-slate-300 text-slate-900 text-xs"
                     />
                   </div>
 
@@ -225,28 +247,21 @@ const Contact = () => {
                     type="submit"
                     variant="hero"
                     size="lg"
-                    className="w-full"
+                    className="w-full h-11 text-xs font-bold bg-slate-900 hover:bg-slate-800 text-white rounded-xl shadow-sm"
                     disabled={isSubmitting}
                   >
                     {isSubmitting ? (
-                      <>
-                        <motion.div
-                          animate={{ rotate: 360 }}
-                          transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
-                          className="w-5 h-5 border-2 border-white border-t-transparent rounded-full"
-                        />
-                        Sending...
-                      </>
+                      <span>Submitting Inquiry...</span>
                     ) : (
-                      <>
-                        Get Free Consultancy
-                        <Send className="w-5 h-5" />
-                      </>
+                      <div className="flex items-center justify-center gap-2">
+                        <span>Submit & Connect on WhatsApp</span>
+                        <Send className="w-3.5 h-3.5" />
+                      </div>
                     )}
                   </Button>
                 </div>
-              </motion.form>
-            </AnimatedSection>
+              </form>
+            </div>
           </div>
         </div>
       </section>

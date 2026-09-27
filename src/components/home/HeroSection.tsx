@@ -1,127 +1,115 @@
 import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
-import { ArrowRight, Sparkles } from "lucide-react";
+import { ArrowRight, Sparkles, PhoneCall, CheckCircle2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import heroBg from "@/assets/hero-bg.jpg";
+import civilflowLogo from "@/assets/civilflow-logo.png";
+import onecrmLogo from "@/assets/onecrm-logo.png";
+import { getWhatsAppUrl } from "@/components/common/WhatsAppButton";
 
 const HeroSection = () => {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Background Image */}
-      <div className="absolute inset-0 z-0">
-        <img
-          src={heroBg}
-          alt=""
-          className="w-full h-full object-cover"
-        />
-        <div className="absolute inset-0 bg-primary/70" />
-      </div>
+    <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 bg-gradient-to-b from-slate-50 via-white to-slate-50 overflow-hidden">
+      {/* Soft atmospheric background gradient */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-96 bg-gradient-to-b from-cyan-100/40 via-blue-50/20 to-transparent blur-2xl pointer-events-none" />
 
-      {/* Simplified Background Gradient - removed expensive animated blur elements */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-1/4 left-1/4 w-64 h-64 rounded-full bg-brand-cyan/10 opacity-50" />
-        <div className="absolute bottom-1/3 right-1/4 w-96 h-96 rounded-full bg-brand-blue/10 opacity-50" />
-      </div>
-
-      {/* Content */}
-      <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 pt-20">
+      <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto text-center">
-          {/* Badge */}
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.3 }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 border border-white/20 mb-8"
-          >
-            <Sparkles className="w-4 h-4 text-accent" />
-            <span className="text-sm font-medium text-white">
-              100% Free IT & AI Consultancy
-            </span>
-          </motion.div>
+          {/* Niche Badge */}
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-cyan-50 border border-cyan-200 text-cyan-800 text-xs sm:text-sm font-bold mb-6 shadow-sm">
+            <Sparkles className="w-4 h-4 text-cyan-600" />
+            <span>Specialized Tech & SaaS for Construction & Hospitality</span>
+          </div>
 
           {/* Main Heading */}
-          <motion.h1
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4, delay: 0.05 }}
-            className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white leading-tight mb-6"
-          >
-            Powering Businesses with{" "}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-cyan to-brand-blue">
-              Intelligent Technology
-            </span>{" "}
-            & AI Automation
-          </motion.h1>
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-black text-slate-900 leading-[1.15] tracking-tight mb-6">
+            Next-Gen Software & AI Products for{" "}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-600 via-blue-600 to-indigo-600">
+              Modern Enterprises
+            </span>
+          </h1>
 
           {/* Subtext */}
-          <motion.p
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4, delay: 0.1 }}
-            className="text-lg md:text-xl text-white/80 max-w-2xl mx-auto mb-10"
-          >
-            Get expert IT & AI consultancy absolutely FREE. We build scalable
-            software and automation solutions for modern businesses.
-          </motion.p>
+          <p className="text-base sm:text-lg md:text-xl text-slate-600 max-w-2xl mx-auto mb-8 leading-relaxed">
+            Power your business operations with flagship products like <strong className="text-slate-900 font-bold">CivilFlow</strong> (Construction ERP) and <strong className="text-slate-900 font-bold">OneCRM AI</strong>. Get 100% Free Technology Consultation.
+          </p>
 
           {/* CTA Buttons */}
-          <motion.div
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4, delay: 0.15 }}
-            className="flex flex-col sm:flex-row items-center justify-center gap-4"
-          >
-            <Link to="/contact">
-              <Button variant="hero" size="xl" className="group">
-                Get Free Consultancy
-                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-              </Button>
-            </Link>
-            <Link to="/services">
-              <Button variant="heroOutline" size="xl">
-                Explore Solutions
-              </Button>
-            </Link>
-          </motion.div>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3.5 mb-12">
+            <a
+              href={getWhatsAppUrl("Hi Infotera! I want to Book a Free Demo on WhatsApp.")}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full sm:w-auto bg-[#25D366] hover:bg-[#20ba59] text-white px-7 py-3.5 rounded-xl font-bold text-sm sm:text-base flex items-center justify-center gap-2.5 shadow-md hover:scale-105 transition-all"
+            >
+              <PhoneCall className="w-5 h-5" />
+              <span>Book Free Demo on WhatsApp</span>
+            </a>
 
-          {/* Trust Indicators */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.4, delay: 0.2 }}
-            className="mt-16 flex flex-wrap items-center justify-center gap-8 text-white/60"
-          >
-            <div className="flex items-center gap-2">
-              <div className="w-2 h-2 rounded-full bg-green-400" />
-              <span className="text-sm">Free Consultancy</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <div className="w-2 h-2 rounded-full bg-green-400" />
-              <span className="text-sm">Zero Risk</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <div className="w-2 h-2 rounded-full bg-green-400" />
-              <span className="text-sm">Maximum Value</span>
-            </div>
-          </motion.div>
+            <Link
+              to="/products"
+              className="w-full sm:w-auto bg-slate-900 hover:bg-slate-800 text-white px-7 py-3.5 rounded-xl font-bold text-sm sm:text-base flex items-center justify-center gap-2 shadow-sm hover:scale-105 transition-all"
+            >
+              <span>Explore Products</span>
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+
+            <Link
+              to="/contact"
+              className="w-full sm:w-auto bg-white hover:bg-slate-50 border border-slate-300 text-slate-800 px-6 py-3.5 rounded-xl font-semibold text-sm sm:text-base transition-colors"
+            >
+              Free Consultation
+            </Link>
+          </div>
+
+          {/* Flagship Products Cards (Clean White Cards) */}
+          <div className="grid sm:grid-cols-2 gap-4 max-w-3xl mx-auto text-left">
+            {/* CivilFlow Pill */}
+            <Link
+              to="/products/civilflow"
+              className="group bg-white hover:bg-cyan-50/40 border border-slate-200 hover:border-cyan-400 p-5 rounded-2xl flex items-center gap-4 transition-all shadow-sm hover:shadow-md"
+            >
+              <div className="w-12 h-12 rounded-xl bg-slate-50 p-1.5 flex items-center justify-center shrink-0 border border-slate-200">
+                <img src={civilflowLogo} alt="CivilFlow" className="w-full h-full object-contain" />
+              </div>
+              <div className="flex-grow">
+                <div className="flex items-center justify-between">
+                  <span className="font-bold text-slate-900 text-base group-hover:text-cyan-700 transition-colors">
+                    CivilFlow
+                  </span>
+                  <span className="text-[10px] bg-emerald-50 text-emerald-700 border border-emerald-200 px-2 py-0.5 rounded-full font-bold">
+                    Live Demo
+                  </span>
+                </div>
+                <p className="text-xs text-slate-500 mt-0.5">
+                  Complete Construction & Labour Management
+                </p>
+              </div>
+            </Link>
+
+            {/* OneCRM AI Pill */}
+            <Link
+              to="/products/onecrm"
+              className="group bg-white hover:bg-blue-50/40 border border-slate-200 hover:border-blue-400 p-5 rounded-2xl flex items-center gap-4 transition-all shadow-sm hover:shadow-md"
+            >
+              <div className="w-12 h-12 rounded-xl bg-slate-50 p-1 flex items-center justify-center shrink-0 border border-slate-200">
+                <img src={onecrmLogo} alt="OneCRM AI" className="w-full h-full object-cover rounded-lg" />
+              </div>
+              <div className="flex-grow">
+                <div className="flex items-center justify-between">
+                  <span className="font-bold text-slate-900 text-base group-hover:text-blue-700 transition-colors">
+                    OneCRM AI
+                  </span>
+                  <span className="text-[10px] bg-blue-50 text-blue-700 border border-blue-200 px-2 py-0.5 rounded-full font-bold">
+                    AI Beta
+                  </span>
+                </div>
+                <p className="text-xs text-slate-500 mt-0.5">
+                  Automated Leads & Sales Intelligence
+                </p>
+              </div>
+            </Link>
+          </div>
         </div>
       </div>
-
-      {/* Scroll Indicator */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.5 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2"
-      >
-        <motion.div
-          animate={{ y: [0, 8, 0] }}
-          transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-          className="w-6 h-10 rounded-full border-2 border-white/30 flex items-start justify-center p-2"
-        >
-          <div className="w-1.5 h-3 rounded-full bg-white/60" />
-        </motion.div>
-      </motion.div>
     </section>
   );
 };

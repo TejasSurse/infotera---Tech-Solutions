@@ -1,113 +1,185 @@
 import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
-import { ArrowRight, Sparkles } from "lucide-react";
+import { ArrowRight, Sparkles, CheckCircle2, PhoneCall } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import AnimatedSection from "@/components/ui/AnimatedSection";
-
-const products = [
-  {
-    title: "CRM Software",
-    description:
-      "Manage customer relationships, track leads, and boost sales with our intelligent CRM solution.",
-    features: ["Lead Management", "Sales Pipeline", "Customer Analytics", "Automation"],
-    industry: "All Industries",
-  },
-  {
-    title: "Project Management",
-    description:
-      "Streamline project workflows, collaborate with teams, and deliver projects on time.",
-    features: ["Task Management", "Team Collaboration", "Time Tracking", "Reporting"],
-    industry: "All Industries",
-  },
-  {
-    title: "POS Software",
-    description:
-      "Complete point-of-sale solution for restaurants, hotels, and cafes with inventory management.",
-    features: ["Order Management", "Inventory", "Payment Processing", "Analytics"],
-    industry: "Food & Beverages",
-  },
-  {
-    title: "Labour Payment Software",
-    description:
-      "Simplified labour management and payment processing for construction companies.",
-    features: ["Attendance Tracking", "Wage Calculation", "Payment Processing", "Reports"],
-    industry: "Construction",
-  },
-  {
-    title: "Hospital Management",
-    description:
-      "Complete hospital and clinic management with appointment scheduling and patient records.",
-    features: ["Appointments", "Patient Records", "Billing", "Pharmacy Management"],
-    industry: "Healthcare",
-  },
-];
+import civilflowLogo from "@/assets/civilflow-logo.png";
+import onecrmLogo from "@/assets/onecrm-logo.png";
+import { getWhatsAppUrl } from "@/components/common/WhatsAppButton";
 
 const ProductsSection = () => {
+  const handleWhatsAppDemo = (product: string) => {
+    const msg = `Hi Infotera! I want to request a Free Live Demo for ${product} on WhatsApp.`;
+    window.open(getWhatsAppUrl(msg), "_blank", "noopener,noreferrer");
+  };
+
   return (
-    <section className="section-padding">
+    <section className="py-16 sm:py-24 bg-slate-50 dark:bg-slate-900/40">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <AnimatedSection className="text-center mb-16">
-          <span className="inline-block px-4 py-1.5 rounded-full bg-accent/10 text-accent text-sm font-medium mb-4">
-            Our Products
+        <div className="text-center mb-12 max-w-3xl mx-auto">
+          <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-cyan-500/10 text-cyan-700 dark:text-cyan-400 text-xs font-bold mb-3">
+            <Sparkles className="w-3.5 h-3.5 text-cyan-500" />
+            Flagship Software Products
           </span>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-primary mb-4">
-            Industry-Specific Software Solutions
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-slate-900 dark:text-white mb-3">
+            Specialized Products Built to Scale Your Business
           </h2>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            Ready-to-deploy software products designed for specific industry needs
-            with customization options.
+          <p className="text-slate-600 dark:text-slate-300 text-sm sm:text-base">
+            Ready-to-deploy, industry-specific SaaS platforms engineered with domain depth and 24/7 dedicated support.
           </p>
-        </AnimatedSection>
+        </div>
 
-        {/* Products Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {products.map((product, index) => (
-            <AnimatedSection key={product.title} delay={index * 0.1}>
-              <motion.div
-                whileHover={{ y: -5 }}
-                className="group bg-card rounded-2xl p-8 shadow-card hover:shadow-card-hover transition-all duration-300 border border-border/50 h-full flex flex-col"
-              >
-                {/* Industry Badge */}
-                <div className="flex items-center justify-between mb-4">
-                  <span className="px-3 py-1 rounded-full bg-muted text-muted-foreground text-xs font-medium">
-                    {product.industry}
-                  </span>
-                  <Sparkles className="w-5 h-5 text-accent" />
+        {/* Featured Products Grid */}
+        <div className="grid lg:grid-cols-2 gap-6 items-stretch">
+          {/* Card 1: CivilFlow */}
+          <div className="bg-white dark:bg-slate-900 rounded-3xl p-6 sm:p-8 border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-md transition-all flex flex-col justify-between h-full">
+            <div>
+              {/* Header */}
+              <div className="flex items-center justify-between gap-4 mb-5 pb-5 border-b border-slate-100 dark:border-slate-800">
+                <div className="flex items-center gap-3">
+                  <div className="w-12 h-12 rounded-xl bg-white p-1.5 shadow-sm border border-slate-200 flex items-center justify-center">
+                    <img src={civilflowLogo} alt="CivilFlow Logo" className="w-full h-full object-contain" />
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                      CivilFlow
+                      <span className="text-[10px] bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 font-bold px-2 py-0.5 rounded-full">
+                        Live
+                      </span>
+                    </h3>
+                    <p className="text-xs text-slate-500 dark:text-slate-400">For Contractors & Civil Engineers</p>
+                  </div>
                 </div>
+                <span className="text-xs font-semibold px-2.5 py-1 rounded-full bg-cyan-500/10 text-cyan-700 dark:text-cyan-400">
+                  Construction Tech
+                </span>
+              </div>
 
-                {/* Title */}
-                <h3 className="text-2xl font-bold text-primary mb-3 group-hover:text-secondary transition-colors">
-                  {product.title}
-                </h3>
+              <h4 className="text-base font-bold text-slate-900 dark:text-white mb-2">
+                Complete Construction & Labour Management Platform
+              </h4>
+              <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 mb-5 leading-relaxed">
+                Manage multiple sites, daily labour roster, material inventory challans, petty expenses, and daily site progress logs from one simple portal.
+              </p>
 
-                {/* Description */}
-                <p className="text-muted-foreground mb-6 flex-grow">
-                  {product.description}
-                </p>
+              {/* Features */}
+              <div className="grid grid-cols-2 gap-2 mb-6 text-xs font-medium text-slate-700 dark:text-slate-300">
+                {[
+                  "Labour Attendance & Wages",
+                  "Multi-Site Management",
+                  "Material Tracking & Audits",
+                  "Site Expense Cashflow",
+                  "Daily Progress Photos",
+                  "24/7 Mobile App Access",
+                ].map((feat) => (
+                  <div key={feat} className="flex items-center gap-1.5">
+                    <CheckCircle2 className="w-3.5 h-3.5 text-cyan-500 shrink-0" />
+                    <span>{feat}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
 
-                {/* Features */}
-                <div className="flex flex-wrap gap-2 mb-6">
-                  {product.features.map((feature) => (
-                    <span
-                      key={feature}
-                      className="px-3 py-1 rounded-lg bg-secondary/10 text-secondary text-xs font-medium"
-                    >
-                      {feature}
-                    </span>
-                  ))}
-                </div>
-
-                {/* CTA */}
-                <Link to="/contact">
-                  <Button variant="outline" className="w-full group-hover:bg-secondary group-hover:text-secondary-foreground group-hover:border-secondary transition-all">
-                    Request Free Demo
-                    <ArrowRight className="w-4 h-4" />
+            {/* CTAs */}
+            <div className="pt-4 border-t border-slate-100 dark:border-slate-800 space-y-3">
+              <div className="grid sm:grid-cols-2 gap-2.5">
+                <Link to="/products/civilflow">
+                  <Button variant="hero" className="w-full bg-cyan-600 hover:bg-cyan-700 text-white text-xs">
+                    <span>View CivilFlow</span>
+                    <ArrowRight className="w-3.5 h-3.5 ml-1" />
                   </Button>
                 </Link>
-              </motion.div>
-            </AnimatedSection>
-          ))}
+
+                <button
+                  onClick={() => handleWhatsAppDemo("CivilFlow Construction Management")}
+                  className="w-full bg-[#25D366] hover:bg-[#20ba59] text-white py-2 px-3 rounded-xl font-bold text-xs flex items-center justify-center gap-1.5 shadow-sm transition-all hover:scale-105"
+                >
+                  <PhoneCall className="w-3.5 h-3.5" />
+                  <span>Free WhatsApp Demo</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          {/* Card 2: OneCRM AI */}
+          <div className="bg-white dark:bg-slate-900 rounded-3xl p-6 sm:p-8 border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-md transition-all flex flex-col justify-between h-full">
+            <div>
+              {/* Header */}
+              <div className="flex items-center justify-between gap-4 mb-5 pb-5 border-b border-slate-100 dark:border-slate-800">
+                <div className="flex items-center gap-3">
+                  <div className="w-12 h-12 rounded-xl bg-white p-1 shadow-sm border border-slate-200 flex items-center justify-center">
+                    <img src={onecrmLogo} alt="OneCRM AI Logo" className="w-full h-full object-cover rounded-lg" />
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                      OneCRM AI
+                      <span className="text-[10px] bg-blue-500/10 text-blue-600 dark:text-blue-400 font-bold px-2 py-0.5 rounded-full">
+                        AI Beta
+                      </span>
+                    </h3>
+                    <p className="text-xs text-slate-500 dark:text-slate-400">For High-Velocity Sales Teams</p>
+                  </div>
+                </div>
+                <span className="text-xs font-semibold px-2.5 py-1 rounded-full bg-blue-500/10 text-blue-700 dark:text-blue-400">
+                  Sales & AI
+                </span>
+              </div>
+
+              <h4 className="text-base font-bold text-slate-900 dark:text-white mb-2">
+                End-to-End AI CRM & Automated Lead Pipeline
+              </h4>
+              <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 mb-5 leading-relaxed">
+                Engineered specifically for Real Estate, Construction, and Hospitality deals. Automates buyer qualification, WhatsApp follow-ups, and booking workflows.
+              </p>
+
+              {/* Features */}
+              <div className="grid grid-cols-2 gap-2 mb-6 text-xs font-medium text-slate-700 dark:text-slate-300">
+                {[
+                  "AI Lead Qualification",
+                  "Automated WhatsApp Drips",
+                  "Site Visit & Event Booking",
+                  "Omnichannel Team Inbox",
+                  "Deal Velocity Analytics",
+                  "Custom ERP Integrations",
+                ].map((feat) => (
+                  <div key={feat} className="flex items-center gap-1.5">
+                    <CheckCircle2 className="w-3.5 h-3.5 text-blue-500 shrink-0" />
+                    <span>{feat}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* CTAs */}
+            <div className="pt-4 border-t border-slate-100 dark:border-slate-800 space-y-3">
+              <div className="grid sm:grid-cols-2 gap-2.5">
+                <Link to="/products/onecrm">
+                  <Button variant="hero" className="w-full bg-blue-600 hover:bg-blue-700 text-white text-xs">
+                    <span>Explore OneCRM</span>
+                    <ArrowRight className="w-3.5 h-3.5 ml-1" />
+                  </Button>
+                </Link>
+
+                <button
+                  onClick={() => handleWhatsAppDemo("OneCRM AI")}
+                  className="w-full bg-[#25D366] hover:bg-[#20ba59] text-white py-2 px-3 rounded-xl font-bold text-xs flex items-center justify-center gap-1.5 shadow-sm transition-all hover:scale-105"
+                >
+                  <PhoneCall className="w-3.5 h-3.5" />
+                  <span>Request AI Demo</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Explore all products bar */}
+        <div className="mt-8 text-center">
+          <Link
+            to="/products"
+            className="inline-flex items-center gap-2 text-xs sm:text-sm font-bold text-cyan-700 dark:text-cyan-400 hover:underline"
+          >
+            <span>Explore all specialized software products and custom development</span>
+            <ArrowRight className="w-3.5 h-3.5" />
+          </Link>
         </div>
       </div>
     </section>

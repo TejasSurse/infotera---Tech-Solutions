@@ -1,212 +1,150 @@
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
+import { Building2, Hotel, HardHat, ArrowRight, Sparkles } from "lucide-react";
 import AnimatedSection from "@/components/ui/AnimatedSection";
 
-const industries = [
+const primarySpecializations = [
   {
-    name: "Healthcare & Medical",
+    name: "Construction & Civil Infrastructure",
+    badge: "Core Specialization",
     description:
-      "Digital solutions for hospitals, clinics, telemedicine, and health management systems",
-    image:
-      "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=600&h=400&fit=crop",
-    color: "from-emerald-500/80 to-teal-600/80",
+      "End-to-end digital site management, labour attendance & wage calculation, material inventory tracking, daily progress logs (DPR), and contractor ERP portals.",
+    image: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&h=600&fit=crop",
+    color: "from-cyan-950/90 via-slate-900/80 to-transparent",
+    productLink: "/products/civilflow",
+    productName: "Featured Product: CivilFlow",
+    features: ["Site & Labour Tracking", "Material Reconciliation", "Petty Cash Management", "Digital Blueprints & Vault"],
   },
   {
-    name: "Finance & Banking",
+    name: "Hospitality, Hotels & Restaurants",
+    badge: "Core Specialization",
     description:
-      "Secure fintech solutions, digital banking, and financial management platforms",
-    image:
-      "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=600&h=400&fit=crop",
-    color: "from-blue-600/80 to-indigo-700/80",
+      "Cloud POS systems, table reservation engines, hotel property management (PMS), banquet booking automations, and intelligent customer relationship platforms.",
+    image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&h=600&fit=crop",
+    color: "from-blue-950/90 via-slate-900/80 to-transparent",
+    productLink: "/products/onecrm",
+    productName: "Featured Product: OneCRM AI",
+    features: ["Cloud POS & Kitchen Display", "Room & Banquet Booking", "AI Lead Conversion", "Guest Retention Campaigns"],
+  },
+];
+
+const otherIndustries = [
+  {
+    name: "Real Estate & Housing",
+    description: "Lead pipelines, property inventory boards, and automated WhatsApp site visit bookings.",
+    image: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=600&h=400&fit=crop",
+  },
+  {
+    name: "Healthcare & Clinics",
+    description: "EMR patient management, doctor scheduling, lab integrations, and billing portals.",
+    image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=600&h=400&fit=crop",
   },
   {
     name: "E-commerce & Retail",
-    description:
-      "Online stores, inventory management, and omnichannel retail solutions",
-    image:
-      "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&h=400&fit=crop",
-    color: "from-purple-500/80 to-pink-600/80",
+    description: "Custom storefronts, high-converting checkout funnels, and warehouse stock tracking.",
+    image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&h=400&fit=crop",
   },
   {
-    name: "Education & E-Learning",
-    description:
-      "Learning management systems, online courses, and educational platforms",
-    image:
-      "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=600&h=400&fit=crop",
-    color: "from-cyan-500/80 to-blue-600/80",
-  },
-  {
-    name: "Real Estate & Property",
-    description:
-      "Property management, virtual tours, and real estate listing solutions",
-    image:
-      "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=600&h=400&fit=crop",
-    color: "from-amber-500/80 to-orange-600/80",
-  },
-  {
-    name: "Hospitality & Tourism",
-    description:
-      "Hotel booking systems, travel platforms, and hospitality management",
-    image:
-      "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=600&h=400&fit=crop",
-    color: "from-rose-500/80 to-red-600/80",
-  },
-  {
-    name: "Manufacturing & Industry",
-    description:
-      "Smart manufacturing, industrial automation, and supply chain solutions",
-    image:
-      "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=600&h=400&fit=crop",
-    color: "from-slate-600/80 to-gray-700/80",
-  },
-  {
-    name: "Logistics & Transportation",
-    description:
-      "Fleet management, route optimization, and logistics tracking systems",
-    image:
-      "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=600&h=400&fit=crop",
-    color: "from-green-600/80 to-emerald-700/80",
-  },
-  {
-    name: "Food & Restaurants",
-    description:
-      "POS systems, online ordering, delivery platforms, and restaurant management",
-    image:
-      "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=600&h=400&fit=crop",
-    color: "from-orange-500/80 to-red-500/80",
-  },
-  {
-    name: "Construction & Engineering",
-    description:
-      "Project management, labor tracking, and construction management software",
-    image:
-      "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=600&h=400&fit=crop",
-    color: "from-yellow-600/80 to-amber-700/80",
-  },
-  {
-    name: "Legal & Consulting",
-    description:
-      "Case management, document automation, and professional services solutions",
-    image:
-      "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=600&h=400&fit=crop",
-    color: "from-indigo-600/80 to-violet-700/80",
-  },
-  {
-    name: "Entertainment & Media",
-    description:
-      "Streaming platforms, content management, and digital media solutions",
-    image:
-      "https://images.unsplash.com/photo-1598899134739-24c46f58b8c0?w=600&h=400&fit=crop",
-    color: "from-fuchsia-500/80 to-purple-600/80",
+    name: "Logistics & Supply Chain",
+    description: "Fleet transit logs, dispatch approvals, vendor billing, and automated tracking portals.",
+    image: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=600&h=400&fit=crop",
   },
 ];
 
 const IndustriesSection = () => {
   return (
-    <section className="section-padding bg-gradient-to-b from-background to-muted/30">
+    <section className="section-padding bg-background">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <AnimatedSection className="text-center mb-16">
-          <span className="inline-block px-4 py-1.5 rounded-full bg-secondary/10 text-secondary text-sm font-medium mb-4">
-            Industries We Serve
+        <AnimatedSection className="text-center mb-16 max-w-3xl mx-auto">
+          <span className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-secondary/10 text-secondary text-sm font-semibold mb-4">
+            <Sparkles className="w-4 h-4" />
+            Industry Specialization
           </span>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-primary mb-4">
-            Solutions for Every Industry
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-primary mb-4">
+            Specialized Tech for Heavy-Duty Sectors
           </h2>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            We understand the unique challenges of different industries and
-            provide tailored technology solutions that drive growth and
-            efficiency.
+          <p className="text-muted-foreground text-lg">
+            We don't build generic cookie-cutter templates. We solve deep workflow bottlenecks in Construction and Hospitality.
           </p>
         </AnimatedSection>
 
-        {/* Industries Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-          {industries.map((industry, index) => (
-            <AnimatedSection key={industry.name} delay={index * 0.05}>
+        {/* Primary Flagship Specializations */}
+        <div className="grid lg:grid-cols-2 gap-8 mb-12">
+          {primarySpecializations.map((item, index) => (
+            <AnimatedSection key={item.name} delay={index * 0.1}>
               <motion.div
-                whileHover={{ y: -8, scale: 1.02 }}
-                transition={{ duration: 0.3 }}
-                className="group relative h-64 rounded-2xl overflow-hidden shadow-card hover:shadow-card-hover cursor-pointer"
+                whileHover={{ y: -6 }}
+                className="relative rounded-3xl overflow-hidden border border-border shadow-card hover:shadow-card-hover group min-h-[460px] flex flex-col justify-end"
               >
                 {/* Background Image */}
-                <div className="absolute inset-0">
-                  <img
-                    src={industry.image}
-                    alt={industry.name}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                    loading="lazy"
-                  />
-                </div>
-
-                {/* Gradient Overlay */}
-                <div
-                  className={`absolute inset-0 bg-gradient-to-t ${industry.color} opacity-80 group-hover:opacity-90 transition-opacity duration-300`}
+                <img
+                  src={item.image}
+                  alt={item.name}
+                  className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                 />
-
-                {/* Glassmorphism Card Overlay */}
-                <div className="absolute inset-0 bg-black/20 backdrop-blur-[2px] group-hover:backdrop-blur-sm transition-all duration-300" />
+                {/* Gradient */}
+                <div className={`absolute inset-0 bg-gradient-to-t ${item.color}`} />
+                <div className="absolute inset-0 bg-slate-950/40 backdrop-blur-[1px]" />
 
                 {/* Content */}
-                <div className="absolute inset-0 flex flex-col justify-end p-6 text-white">
-                  {/* Industry Name - Always visible */}
-                  <h3 className="text-xl font-bold mb-2 drop-shadow-lg">
-                    {industry.name}
-                  </h3>
+                <div className="relative z-10 p-8 sm:p-10 text-white flex flex-col justify-between h-full">
+                  <div>
+                    <span className="inline-block px-3 py-1 rounded-full bg-cyan-500/20 border border-cyan-400/40 text-cyan-300 text-xs font-bold mb-4">
+                      {item.badge}
+                    </span>
+                    <h3 className="text-2xl sm:text-3xl font-extrabold mb-3 leading-snug">
+                      {item.name}
+                    </h3>
+                    <p className="text-slate-200 text-sm sm:text-base leading-relaxed mb-6">
+                      {item.description}
+                    </p>
 
-                  {/* Description - Visible on hover */}
-                  <p className="text-white/90 text-sm leading-relaxed transform translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
-                    {industry.description}
-                  </p>
-                </div>
+                    <div className="grid grid-cols-2 gap-2 mb-6">
+                      {item.features.map((feat) => (
+                        <div key={feat} className="flex items-center gap-2 text-xs text-slate-200 bg-white/10 px-2.5 py-1.5 rounded-lg backdrop-blur-sm">
+                          <span className="w-1.5 h-1.5 rounded-full bg-cyan-400"></span>
+                          <span>{feat}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
 
-                {/* Decorative Elements */}
-                <div className="absolute top-4 right-4 w-12 h-12 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <svg
-                    className="w-5 h-5 text-white"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
+                  <Link
+                    to={item.productLink}
+                    className="inline-flex items-center justify-between bg-white text-slate-900 font-bold px-6 py-3.5 rounded-xl text-sm hover:bg-cyan-400 hover:text-slate-950 transition-colors shadow-lg"
                   >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M14 5l7 7m0 0l-7 7m7-7H3"
-                    />
-                  </svg>
+                    <span>{item.productName}</span>
+                    <ArrowRight className="w-4 h-4" />
+                  </Link>
                 </div>
               </motion.div>
             </AnimatedSection>
           ))}
         </div>
 
-        {/* Bottom CTA */}
-        <AnimatedSection delay={0.6} className="text-center mt-12">
-          <p className="text-muted-foreground mb-4">
-            Don't see your industry? We create custom solutions for any sector.
-          </p>
-          <motion.a
-            href="/contact"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-brand-blue to-brand-cyan text-white font-medium rounded-full hover:shadow-lg transition-shadow"
-          >
-            Let's Discuss Your Project
-            <svg
-              className="w-4 h-4"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M14 5l7 7m0 0l-7 7m7-7H3"
-              />
-            </svg>
-          </motion.a>
-        </AnimatedSection>
+        {/* Other Industries Mini Grid */}
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {otherIndustries.map((ind, idx) => (
+            <AnimatedSection key={ind.name} delay={idx * 0.05}>
+              <div className="bg-card rounded-2xl p-6 border border-border/80 shadow-sm hover:shadow-card transition-all h-full flex flex-col justify-between">
+                <div>
+                  <h4 className="font-bold text-base text-primary mb-2">{ind.name}</h4>
+                  <p className="text-xs text-muted-foreground leading-relaxed">
+                    {ind.description}
+                  </p>
+                </div>
+                <Link
+                  to="/services"
+                  className="text-xs font-bold text-secondary hover:underline inline-flex items-center gap-1 mt-4"
+                >
+                  <span>Explore Custom Tech</span>
+                  <span>→</span>
+                </Link>
+              </div>
+            </AnimatedSection>
+          ))}
+        </div>
       </div>
     </section>
   );
