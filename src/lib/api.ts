@@ -1,6 +1,6 @@
 // Infotera API & Tracking Client
 
-const API_BASE = import.meta.env.VITE_API_URL || "/api";
+const API_BASE = import.meta.env.VITE_API_URL || "https://server-infotera.vercel.app/api";
 
 export interface Lead {
   _id: string;
